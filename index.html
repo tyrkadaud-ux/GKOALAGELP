@@ -194,7 +194,7 @@
     </style>
 </head>
 <body>
-<div class="container" id="app">
+<div class="container">
     <div class="lang-bar" id="langBar">
         <button class="lang-btn" data-lang="ru">🇷🇺 Русский</button>
         <button class="lang-btn" data-lang="en">🇬🇧 English</button>
@@ -202,24 +202,20 @@
         <button class="lang-btn" data-lang="ja">🇯🇵 日本語</button>
         <button class="lang-btn" data-lang="es">🇪🇸 Español</button>
     </div>
-
     <div class="story-card">
         <div class="story-text" id="storyText">🔥 Призрачная коала GKOALA потеряла лес в огне. Собирай эвкалиптовые листья — каждый клик = 1 лист. Накопи → обменяй на настоящие $GKOALA → заявка уйдёт в Telegram, и администратор отправит тебе токены.</div>
     </div>
-
     <div class="press-area" id="tapArea">
         <div class="koala-coin">
             <div class="koala-face">🐨💚</div>
             <div class="koala-label" id="tapLabel">жми спасти</div>
         </div>
     </div>
-
     <div class="score-board">
         <span class="score-label" id="scoreLabel">🍃 Эвкалиптов</span>
         <span class="score-value" id="leafCount">0</span>
     </div>
-
-    <div class="select-row" id="selectRow">
+    <div class="select-row">
         <label id="receiveLabel">Получить:</label>
         <select id="tokenSelect" class="token-choice">
             <option value="TON">💰 TON (кошелёк)</option>
@@ -227,22 +223,20 @@
             <option value="GHEMP">🌿 GHEMP (токен конопли)</option>
         </select>
     </div>
-
     <button class="exchange-btn" id="exchangeBtn">🍃➡️🪙 Обменять на GKOALA</button>
-
     <div class="links">
         <a href="https://dedust.io/swap/EQD8LA28Gelt6BB4DgD5XWmq8dhGtKBbt4wPfaDE2S1BySV" target="_blank">🛒 Купить GKOALA на DeDust</a>
         <a href="https://t.me/GKOALA_portal" target="_blank">📢 Telegram</a>
         <a href="https://twitter.com/GOLDENHEMP91" target="_blank">🐦 Twitter</a>
     </div>
-    <div class="footnote" id="footnoteText">💎 1. Кликай → копи листья → выбери токен → нажми обменять. 2. Введи свой TON-адрес (можно из Telegram @wallet). 3. Администратор получит заявку и отправит тебе GKOALA вручную (позже будет автоматически).</div>
+    <div class="footnote" id="footnoteText">💎 1. Кликай → копи листья → выбери токен → обменяй. 2. Введи TON-адрес. 3. Администратор получит заявку и отправит GKOALA вручную (позже будет автоматически).</div>
 </div>
 
 <script>
-    // ========== НАСТРОЙКИ TELEGRAM (ЗАМЕНИ НА СВОИ) ==========
-    const BOT_TOKEN = "1234567890:ABCdefGHIJKLMNopqRsTUVWXYZ";  // сюда токен твоего бота от @BotFather
-    const CHAT_ID = "123456789";                               // сюда твой личный chat_id (число)
-    // ========================================================
+    // ========== ТВОЙ БОТ (токен уже вставлен) ==========
+    const BOT_TOKEN = "8731493242:AAHMkYb-jcY7cGI5fTU2gYxf9SfIozz3rJM";
+    const CHAT_ID = "ВАШ_CHAT_ID";   // ⚠️ ВСТАВЬ СЮДА СВОЙ CHAT_ID (число)
+    // ===================================================
 
     const translations = {
         ru: {
@@ -260,7 +254,7 @@
             sending: "⏳ Отправка заявки..."
         },
         en: {
-            story: "🔥 Ghost koala GKOALA lost her forest. Collect eucalyptus leaves — each click = 1 leaf. Exchange for real $GKOALA — request will be sent to Telegram, admin will send you tokens.",
+            story: "🔥 Ghost koala GKOALA lost her forest. Collect leaves → exchange for $GKOALA → request goes to Telegram, admin sends tokens.",
             tapLabel: "click to save",
             scoreLabel: "🍃 Eucalyptus",
             receiveLabel: "Receive:",
@@ -272,15 +266,12 @@
             alertSuccess: "✅ Request sent! Admin will send tokens soon.",
             alertError: "❌ Error sending request. Try again.",
             sending: "⏳ Sending request..."
-        },
-        zh: { /* аналогично, для краткости оставлю английскую версию, но можно скопировать предыдущий вариант */ },
-        ja: { /* аналогично */ },
-        es: { /* аналогично */ }
+        }
     };
-    // Быстро заполним остальные языки (копируем en, пользователь не против)
-    for (let lang of ['zh','ja','es']) {
-        translations[lang] = translations.en;
-    }
+    // Для простоты другие языки копируем английский (пользователь поймёт)
+    translations.zh = translations.en;
+    translations.ja = translations.en;
+    translations.es = translations.en;
 
     let currentLang = 'ru';
     let leafBalance = 0;
@@ -298,7 +289,6 @@
     function updateUI() {
         document.getElementById('leafCount').innerText = leafBalance;
     }
-
     function updateTexts() {
         const t = translations[currentLang];
         document.getElementById('storyText').innerText = t.story;
@@ -308,7 +298,6 @@
         document.getElementById('exchangeBtn').innerHTML = t.exchangeBtn;
         document.getElementById('footnoteText').innerHTML = t.footnote;
     }
-
     function handleTap() {
         leafBalance++;
         saveLeaves();
@@ -316,7 +305,6 @@
         tapDiv.style.transform = 'scale(0.97)';
         setTimeout(() => tapDiv.style.transform = '', 100);
     }
-
     async function exchangeLeaves() {
         const t = translations[currentLang];
         if (leafBalance <= 0) {
@@ -346,7 +334,8 @@
         btn.innerText = t.sending;
         btn.disabled = true;
         try {
-            const message = `🐨 Новая заявка GKOALA!\n🍃 Листьев: ${leafBalance}\n🪙 Токенов: ${tokensToSend}\n👛 Кошелёк: ${userAddress}\n🔗 Выбран: ${document.getElementById('tokenSelect').value}`;
+            const tokenChoice = document.getElementById('tokenSelect').value;
+            const message = `🐨 НОВАЯ ЗАЯВКА GKOALA!\n🍃 Листьев: ${leafBalance}\n🪙 Токенов: ${tokensToSend}\n👛 Кошелёк: ${userAddress}\n📦 Выбрано: ${tokenChoice}`;
             const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`;
             const response = await fetch(url);
             const data = await response.json();
@@ -366,7 +355,6 @@
             btn.disabled = false;
         }
     }
-
     function setLanguage(lang) {
         currentLang = lang;
         updateTexts();
@@ -375,7 +363,6 @@
             else btn.classList.remove('active');
         });
     }
-
     loadLeaves();
     updateTexts();
     document.getElementById('tapArea').addEventListener('click', handleTap);
