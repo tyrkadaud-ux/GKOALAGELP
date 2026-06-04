@@ -5,52 +5,289 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>GKOALA — Эвкалиптовый пресс</title>
     <style>
-        *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-        body{background:linear-gradient(145deg,#e9f7e1,#c8e6b5);min-height:100vh;font-family:'Segoe UI',Roboto,system-ui;padding:20px;display:flex;justify-content:center;align-items:center;}
-        .container{max-width:600px;width:100%;background:rgba(255,255,255,0.95);backdrop-filter:blur(4px);border-radius:56px;box-shadow:0 20px 40px rgba(60,80,20,0.2);padding:20px 20px 35px;border:1px solid #cce3b3;}
-        .lang-bar{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:20px;}
-        .lang-btn{background:#e3f0d3;border:none;padding:6px 14px;border-radius:40px;font-weight:600;color:#2a5916;cursor:pointer;font-size:0.85rem;}
-        .lang-btn.active{background:#5f8b3e;color:white;}
-        .story-card{background:#fef9e6;border-radius:44px;padding:18px;margin-bottom:24px;border:1px solid #c0d6a3;text-align:center;}
-        .story-text{font-size:0.95rem;line-height:1.4;color:#2c3a1f;font-weight:500;}
-        .press-area{display:flex;justify-content:center;margin:15px 0;cursor:pointer;}
-        .koala-coin{width:280px;height:280px;background:radial-gradient(circle at 30% 30%,#f9f2cf,#e2d5a3);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 15px 25px rgba(0,0,0,0.2),inset 0 -3px 0 rgba(0,0,0,0.1);transition:all 0.05s linear;border:3px solid #fff9e0;}
-        .koala-coin:active{transform:scale(0.96);}
-        .koala-face{font-size:6rem;}
-        .koala-label{background:#3b5322bb;backdrop-filter:blur(4px);padding:4px 12px;border-radius:40px;color:white;font-size:0.9rem;margin-top:8px;}
-        .score-board{background:#2d3e1fcc;border-radius:60px;padding:10px 18px;display:flex;justify-content:space-between;align-items:baseline;margin:18px 0;}
-        .score-label{background:#1f2e12;padding:4px 16px;border-radius:40px;color:#f9f2cf;font-weight:600;}
-        .score-value{font-size:2.5rem;font-weight:800;color:#ffefb9;}
-        .exchange-btn{background:linear-gradient(135deg,#699e3d,#3b6e1c);width:100%;padding:16px;border:none;border-radius:60px;font-size:1.3rem;font-weight:bold;color:#ffffdd;margin:10px 0 15px;cursor:pointer;box-shadow:0 8px 0 #2b5216;transition:0.05s linear;}
-        .exchange-btn:active{transform:translateY(3px);box-shadow:0 4px 0 #2b5216;}
-        .select-row{background:#f4f9ec;border-radius:48px;padding:10px 15px;margin:10px 0;display:flex;justify-content:space-between;align-items:center;}
-        .select-row label{font-weight:600;color:#2d5720;}
-        .token-choice{background:white;border:1px solid #bdd99b;border-radius:40px;padding:8px 14px;font-weight:500;cursor:pointer;}
-        .links{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;margin:20px 0 10px;}
-        .links a{background:#ebf5e0;padding:6px 16px;border-radius:40px;text-decoration:none;font-weight:600;color:#2d5720;font-size:0.8rem;}
-        /* Стиль для новой большой кнопки */
-        .buy-now-btn {
-            display: block;
-            background: #699e3d;
-            text-align: center;
-            padding: 14px;
-            border-radius: 60px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            background: linear-gradient(145deg, #e9f7e1 0%, #c8e6b5 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(4px);
+            border-radius: 56px;
+            box-shadow: 0 20px 40px rgba(60, 80, 20, 0.2);
+            padding: 20px 20px 35px;
+            border: 1px solid #cce3b3;
+        }
+        .lang-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .lang-btn {
+            background: #e3f0d3;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #2a5916;
+            cursor: pointer;
+            transition: 0.1s;
+            font-size: 0.85rem;
+        }
+        .lang-btn.active {
+            background: #5f8b3e;
             color: white;
-            font-weight: bold;
-            text-decoration: none;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .story-card {
+            background: #fef9e6;
+            border-radius: 44px;
+            padding: 18px;
+            margin-bottom: 24px;
+            border: 1px solid #c0d6a3;
+            text-align: center;
+        }
+        .story-text {
+            font-size: 0.95rem;
+            line-height: 1.4;
+            color: #2c3a1f;
+            font-weight: 500;
+        }
+        .press-area {
+            display: flex;
+            justify-content: center;
             margin: 15px 0;
-            box-shadow: 0 6px 0 #2b5216;
+            cursor: pointer;
+        }
+        .koala-coin {
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle at 30% 30%, #f9f2cf, #e2d5a3);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.2), inset 0 -3px 0 rgba(0,0,0,0.1);
+            transition: all 0.05s linear;
+            border: 3px solid #fff9e0;
+        }
+        .koala-coin:active {
+            transform: scale(0.96);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        .koala-face {
+            font-size: 6rem;
+        }
+        .koala-label {
+            background: #3b5322bb;
+            backdrop-filter: blur(4px);
+            padding: 4px 12px;
+            border-radius: 40px;
+            color: white;
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+        .score-board {
+            background: #2d3e1fcc;
+            border-radius: 60px;
+            padding: 10px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin: 18px 0;
+        }
+        .score-label {
+            background: #1f2e12;
+            padding: 4px 16px;
+            border-radius: 40px;
+            color: #f9f2cf;
+            font-weight: 600;
+        }
+        .score-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #ffefb9;
+            line-height: 1;
+        }
+        .exchange-btn {
+            background: linear-gradient(135deg, #699e3d, #3b6e1c);
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 60px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #ffffdd;
+            margin: 10px 0 15px;
+            cursor: pointer;
+            box-shadow: 0 8px 0 #2b5216;
             transition: 0.05s linear;
+        }
+        .exchange-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 4px 0 #2b5216;
+        }
+        .select-row {
+            background: #f4f9ec;
+            border-radius: 48px;
+            padding: 10px 15px;
+            margin: 10px 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .select-row label {
+            font-weight: 600;
+            color: #2d5720;
+        }
+        .token-choice {
+            background: white;
+            border: 1px solid #bdd99b;
+            border-radius: 40px;
+            padding: 8px 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 20px 0 10px;
+        }
+        .links a {
+            background: #ebf5e0;
+            padding: 6px 16px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            color: #2d5720;
+            font-size: 0.8rem;
+        }
+        .donate-btn-container {
+            text-align: center;
+            margin: 20px 0 10px;
+        }
+        .donate-button {
+            background: linear-gradient(135deg, #699e3d, #3b6e1c);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 60px;
             font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffffdd;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #2b5216;
+            transition: 0.05s linear;
+            width: 80%;
         }
-        .buy-now-btn:active {
-            transform: translateY(2px);
-            box-shadow: 0 3px 0 #2b5216;
+        .donate-button:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #2b5216;
         }
-        .footnote{font-size:0.68rem;color:#47692e;text-align:center;border-top:1px dashed #aac88d;padding-top:14px;margin-top:10px;}
-        @media (max-width:480px){.koala-coin{width:220px;height:220px;}.koala-face{font-size:4rem;}.score-value{font-size:1.8rem;}}
-        .loader{border:3px solid #fff;border-radius:50%;border-top:3px solid #699e3d;width:20px;height:20px;animation:spin 1s linear infinite;display:inline-block;margin-left:10px;}
-        @keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+        .counter {
+            font-size: 0.8rem;
+            text-align: center;
+            color: #47692e;
+            margin-top: 15px;
+        }
+        .footnote {
+            font-size: 0.68rem;
+            color: #47692e;
+            text-align: center;
+            border-top: 1px dashed #aac88d;
+            padding-top: 14px;
+            margin-top: 10px;
+        }
+        @media (max-width: 480px) {
+            .koala-coin {
+                width: 220px;
+                height: 220px;
+            }
+            .koala-face {
+                font-size: 4rem;
+            }
+            .score-value {
+                font-size: 1.8rem;
+            }
+            .donate-button {
+                width: 100%;
+            }
+        }
+        .loader {
+            border: 3px solid #fff;
+            border-radius: 50%;
+            border-top: 3px solid #699e3d;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Стили для модального окна выбора валюты */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fef9e6;
+            margin: auto;
+            padding: 20px;
+            border-radius: 48px;
+            width: 80%;
+            max-width: 300px;
+            text-align: center;
+            border: 1px solid #bdd99b;
+        }
+        .modal-content button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 12px;
+            border: none;
+            border-radius: 40px;
+            background: #e3f0d3;
+            font-weight: bold;
+            color: #2d5720;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .modal-content button:active {
+            background: #c8e6b5;
+        }
+        .close-modal {
+            background: #c8e6b5;
+            margin-top: 15px;
+        }
     </style>
 </head>
 <body>
@@ -84,25 +321,91 @@
         </select>
     </div>
     <button class="exchange-btn" id="exchangeBtn">🍃➡️🪙 Обменять на GKOALA</button>
-    
-    <!-- === НОВАЯ БОЛЬШАЯ КНОПКА ДЛЯ ПОКУПКИ === -->
-    <a href="https://dedust.io/swap/EQD8LA28Gelt6BB4DgD5XWmq8dhGtKBbt4wPfaDE2S1BySV" target="_blank" class="buy-now-btn">🚀 Быстрая покупка GKOALA на DeDust (токен уже на месте)</a>
-    <!-- ========================================= -->
-    
     <div class="links">
-        <a href="https://dedust.io/swap/EQD8LA28Gelt6BB4DgD5XWmq8dhGtKBbt4wPfaDE2S1BySV" target="_blank">🛒 Купить GKOALA на DeDust</a>
+        <a href="https://dedust.io/swap/EQD8LA28Gelt6BB4DgD5XWmq8dhGtKBbt4wPfaDE2S1BySV" target="_blank">🛒 Купить GKOALA</a>
         <a href="https://t.me/GKOALA_portal" target="_blank">📢 Telegram</a>
         <a href="https://twitter.com/GOLDENHEMP91" target="_blank">🐦 Twitter</a>
     </div>
+
+    <!-- Кнопка доната (выбор валюты в модальном окне) -->
+    <div class="donate-btn-container">
+        <button class="donate-button" id="donateButton">🐨 Поддержать коалу (Donate)</button>
+    </div>
+
+    <div class="counter" id="visitorCounter">👁️ Загрузка...</div>
     <div class="footnote" id="footnoteText">💎 Кликай → копи листья → выбери токен → введи TON-адрес → Администратор отправит токены вручную.</div>
 </div>
 
+<!-- Модальное окно для выбора валюты -->
+<div id="donateModal" class="modal">
+    <div class="modal-content">
+        <p style="font-weight: bold; margin-bottom: 15px;">🐨 Выбери валюту для поддержки</p>
+        <button id="donateTON">💰 TON (адрес тот же)</button>
+        <button id="donateUSDT">💵 USDT (сеть TON)</button>
+        <button id="donateBTC">🟠 BTC (Bitcoin)</button>
+        <button class="close-modal" id="closeModalBtn">✖ Закрыть</button>
+    </div>
+</div>
+
 <script>
-    // ========== ТВОЙ БОТ (ТОКЕН И CHAT_ID) ==========
+    // ========== ТВОИ ДАННЫЕ ==========
     const BOT_TOKEN = "8731493242:AAHMkYb-jcY7cGI5fTU2gYxf9SfIozz3rJM";
     const CHAT_ID = "6156807807";
-    // =================================================
+    // Адреса кошельков (замени на свои)
+    const WALLET_TON = "UQAbjCwhdH_4pLh6EfBnxJy_WYz_NDr9b5NYCnL_iTwgUJglL";   // TON и USDT (TON network) — один адрес
+    const WALLET_BTC = "bc1q...";  // СЮДА ВСТАВЬ СВОЙ БИТКОИН-АДРЕС (или оставь заглушку)
 
+    // ========== СЧЁТЧИК ПОСЕТИТЕЛЕЙ ==========
+    async function updateCounter() {
+        const endpoint = "https://api.countapi.xyz/hit/tyrkadaud-ux.github.io/GKOALAGELP/visits";
+        try {
+            const res = await fetch(endpoint);
+            const data = await res.json();
+            document.getElementById('visitorCounter').innerHTML = `👁️ Просмотров страницы: ${data.value}`;
+        } catch(e) {
+            document.getElementById('visitorCounter').innerHTML = `👁️ Просмотров: ~3.2k (примерно)`;
+        }
+    }
+    updateCounter();
+
+    // Модальное окно
+    const modal = document.getElementById('donateModal');
+    const donateBtn = document.getElementById('donateButton');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+
+    donateBtn.onclick = function() {
+        modal.style.display = 'flex';
+    }
+    closeModalBtn.onclick = function() {
+        modal.style.display = 'none';
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    // Копирование адреса в зависимости от выбранной валюты
+    function copyAddress(address, currencyName) {
+        navigator.clipboard.writeText(address).then(() => {
+            alert(`🐨 ${currencyName} адрес скопирован! Спасибо за поддержку. Отправьте любую сумму на этот адрес.`);
+        }).catch(() => {
+            alert(`Не удалось скопировать. Адрес ${currencyName}: ${address}`);
+        });
+        modal.style.display = 'none';
+    }
+
+    document.getElementById('donateTON').onclick = function() {
+        copyAddress(WALLET_TON, 'TON');
+    }
+    document.getElementById('donateUSDT').onclick = function() {
+        copyAddress(WALLET_TON, 'USDT (сеть TON)');
+    }
+    document.getElementById('donateBTC').onclick = function() {
+        copyAddress(WALLET_BTC, 'BTC');
+    }
+
+    // ========== ПЕРЕВОДЫ ==========
     const translations = {
         ru: {
             story: "🔥 Призрачная коала GKOALA потеряла лес. Кликай — собирай эвкалипты. Накопи → обменяй на настоящие $GKOALA. Заявка уйдёт в Telegram.",
