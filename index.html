@@ -5,30 +5,201 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>GKOALA — Эвкалиптовый пресс</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { background: linear-gradient(145deg, #e9f7e1 0%, #c8e6b5 100%); min-height: 100vh; font-family: 'Segoe UI', Roboto, system-ui; padding: 20px; }
-        .container { max-width: 600px; margin: 0 auto; background: rgba(255,255,255,0.9); backdrop-filter: blur(4px); border-radius: 56px; padding: 20px 20px 35px; border: 1px solid #cce3b3; }
-        .lang-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 20px; }
-        .lang-btn { background: #e3f0d3; border: none; padding: 6px 14px; border-radius: 40px; font-weight: 600; color: #2a5916; cursor: pointer; }
-        .lang-btn.active { background: #5f8b3e; color: white; }
-        .story-card { background: #fef9e6; border-radius: 44px; padding: 18px; margin-bottom: 24px; text-align: center; }
-        .story-text { font-size: 0.95rem; color: #2c3a1f; font-weight: 500; }
-        .press-area { display: flex; justify-content: center; margin: 15px 0; cursor: pointer; }
-        .koala-coin { width: 200px; height: 200px; background: radial-gradient(circle at 30% 30%, #f9f2cf, #e2d5a3); border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 15px 25px rgba(0,0,0,0.2); transition: 0.05s linear; border: 3px solid #fff9e0; }
-        .koala-coin:active { transform: scale(0.96); }
-        .koala-face { font-size: 4rem; }
-        .koala-label { background: #3b5322bb; backdrop-filter: blur(4px); padding: 4px 12px; border-radius: 40px; color: white; font-size: 0.7rem; margin-top: 8px; }
-        .score-board { background: #2d3e1fcc; border-radius: 60px; padding: 10px 18px; display: flex; justify-content: space-between; align-items: baseline; margin: 18px 0; }
-        .score-label { background: #1f2e12; padding: 4px 16px; border-radius: 40px; color: #f9f2cf; font-weight: 600; }
-        .score-value { font-size: 2.3rem; font-weight: 800; color: #ffefb9; }
-        .exchange-btn { background: linear-gradient(135deg, #699e3d, #3b6e1c); width: 100%; padding: 16px; border: none; border-radius: 60px; font-size: 1.3rem; font-weight: bold; color: #ffffdd; margin: 10px 0 15px; cursor: pointer; box-shadow: 0 8px 0 #2b5216; transition: 0.05s linear; }
-        .exchange-btn:active { transform: translateY(3px); }
-        .select-row { background: #f4f9ec; border-radius: 48px; padding: 10px 15px; margin: 10px 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
-        .select-row select { background: white; border: 1px solid #bdd99b; border-radius: 40px; padding: 8px 14px; font-weight: 500; }
-        .links { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin: 20px 0 10px; }
-        .links a { background: #ebf5e0; padding: 6px 16px; border-radius: 40px; text-decoration: none; font-weight: 600; color: #2d5720; font-size: 0.8rem; }
-        .footnote { font-size: 0.68rem; color: #47692e; text-align: center; border-top: 1px dashed #aac88d; padding-top: 14px; margin-top: 10px; }
-        @media (max-width:480px){ .koala-coin{width:150px;height:150px;} .koala-face{font-size:3rem;} .score-value{font-size:1.8rem;} }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            background: linear-gradient(145deg, #e9f7e1 0%, #c8e6b5 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(4px);
+            border-radius: 56px;
+            box-shadow: 0 20px 40px rgba(60,80,20,0.2);
+            padding: 24px 20px 35px;
+            border: 1px solid #cce3b3;
+        }
+        .lang-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .lang-btn {
+            background: #e3f0d3;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #2a5916;
+            cursor: pointer;
+            transition: 0.1s;
+            font-size: 0.85rem;
+        }
+        .lang-btn.active {
+            background: #5f8b3e;
+            color: white;
+        }
+        .story-card {
+            background: #fef9e6;
+            border-radius: 44px;
+            padding: 18px;
+            margin-bottom: 24px;
+            border: 1px solid #c0d6a3;
+            text-align: center;
+        }
+        .story-text {
+            font-size: 0.95rem;
+            line-height: 1.4;
+            color: #2c3a1f;
+            font-weight: 500;
+        }
+        .press-area {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+            cursor: pointer;
+        }
+        .koala-coin {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle at 30% 30%, #f9f2cf, #e2d5a3);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.2), inset 0 -3px 0 rgba(0,0,0,0.1);
+            transition: transform 0.05s linear;
+            border: 3px solid #fff9e0;
+        }
+        .koala-coin:active {
+            transform: scale(0.96);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        .koala-face {
+            font-size: 4rem;
+        }
+        .koala-label {
+            background: #3b5322bb;
+            backdrop-filter: blur(4px);
+            padding: 4px 12px;
+            border-radius: 40px;
+            color: white;
+            font-size: 0.7rem;
+            margin-top: 8px;
+        }
+        .score-board {
+            background: #2d3e1fcc;
+            border-radius: 60px;
+            padding: 10px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin: 18px 0;
+        }
+        .score-label {
+            background: #1f2e12;
+            padding: 4px 16px;
+            border-radius: 40px;
+            color: #f9f2cf;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .score-value {
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: #ffefb9;
+            line-height: 1;
+        }
+        .exchange-btn {
+            background: linear-gradient(135deg, #699e3d, #3b6e1c);
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 60px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #ffffdd;
+            margin: 10px 0 15px;
+            cursor: pointer;
+            box-shadow: 0 8px 0 #2b5216;
+            transition: 0.05s linear;
+        }
+        .exchange-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 4px 0 #2b5216;
+        }
+        .select-row {
+            background: #f4f9ec;
+            border-radius: 48px;
+            padding: 10px 15px;
+            margin: 10px 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .select-row label {
+            font-weight: 600;
+            color: #2d5720;
+        }
+        .token-choice {
+            background: white;
+            border: 1px solid #bdd99b;
+            border-radius: 40px;
+            padding: 8px 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 20px 0 10px;
+        }
+        .links a {
+            background: #ebf5e0;
+            padding: 6px 16px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            color: #2d5720;
+            font-size: 0.8rem;
+        }
+        .footnote {
+            font-size: 0.68rem;
+            color: #47692e;
+            text-align: center;
+            border-top: 1px dashed #aac88d;
+            padding-top: 14px;
+            margin-top: 10px;
+        }
+        .error-msg {
+            color: #a52222;
+            background: #ffe0e0;
+            border-radius: 40px;
+            padding: 8px;
+            margin: 10px 0;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+        @media (max-width: 480px) {
+            .koala-coin { width: 150px; height: 150px; }
+            .koala-face { font-size: 3rem; }
+            .score-value { font-size: 1.8rem; }
+        }
     </style>
 </head>
 <body>
@@ -40,50 +211,238 @@
         <button class="lang-btn" data-lang="ja">🇯🇵 日本語</button>
         <button class="lang-btn" data-lang="es">🇪🇸 Español</button>
     </div>
-    <div class="story-card"><div class="story-text" id="storyText">🔥 Призрачная коала GKOALA потеряла лес. Собирай эвкалипты (клик = 1 лист). Накопи → обменяй на $GKOALA → автоматически получишь на TON-кошелёк.</div></div>
-    <div class="press-area" id="tapArea"><div class="koala-coin"><div class="koala-face">🐨💚</div><div class="koala-label" id="tapLabel">жми спасти</div></div></div>
-    <div class="score-board"><span class="score-label" id="scoreLabel">🍃 Эвкалиптов</span><span class="score-value" id="leafCount">0</span></div>
-    <div class="select-row"><label id="receiveLabel">Получить:</label><select id="tokenSelect" class="token-choice"><option value="TON">💰 TON кошелёк</option></select></div>
+
+    <div class="story-card">
+        <div class="story-text" id="storyText">🔥 Призрачная коала GKOALA потеряла лес в огне. Собирай эвкалиптовые листья — каждый клик = 1 лист. Накопи → обменяй на настоящие $GKOALA → автоматически на твой кошелёк.</div>
+    </div>
+
+    <div class="press-area" id="tapArea">
+        <div class="koala-coin">
+            <div class="koala-face">🐨💚</div>
+            <div class="koala-label" id="tapLabel">жми спасти</div>
+        </div>
+    </div>
+
+    <div class="score-board">
+        <span class="score-label" id="scoreLabel">🍃 Эвкалиптов</span>
+        <span class="score-value" id="leafCount">0</span>
+    </div>
+
+    <div class="select-row">
+        <label id="receiveLabel">Получить на кошелёк:</label>
+        <select id="tokenSelect" class="token-choice">
+            <option value="TON">💰 TON (любой TON-кошелёк)</option>
+            <option value="USDT">💵 USDT (через DeDust)</option>
+            <option value="GHEMP">🌿 GHEMP (токен конопли)</option>
+        </select>
+    </div>
+
     <button class="exchange-btn" id="exchangeBtn">🍃➡️🪙 Обменять на GKOALA</button>
-    <div class="links"><a href="https://dedust.io/swap/EQD8LA28Gelt6BB4DgD5XWmq8dhGtKBbt4wPfaDE2S1BySV" target="_blank">🛒 Купить GKOALA на DeDust</a><a href="https://t.me/GKOALA_portal" target="_blank">📢 Telegram</a><a href="https://twitter.com/GKOALA_GHOST" target="_blank">🐦 Twitter</a></div>
-    <div class="footnote" id="footnoteText">💎 Кликай → копи листья → обменяй → GKOALA придут автоматически на твой TON-кошелёк. Комиссия сети минимальна.</div>
+
+    <div class="links">
+        <a href="https://dedust.io/swap/EQD8LA28Gelt6BB4DgD5XWmq8dhGtKBbt4wPfaDE2S1BySV" target="_blank">🛒 Купить GKOALA на DeDust</a>
+        <a href="https://t.me/GKOALA_portal" target="_blank">📢 Telegram</a>
+        <a href="https://twitter.com/GOLDENHEMP91" target="_blank">🐦 Twitter</a>
+    </div>
+    <div class="footnote" id="footnoteText">💎 Кликай → копи листья → выбери кошелёк → обменяй → GKOALA придут автоматически. Никакой ручной отправки.</div>
+    <div id="errorMsg" class="error-msg" style="display:none;"></div>
 </div>
+
 <script>
+    // ======================= ПЕРЕВОДЫ =======================
     const translations = {
-        ru: { story:"🔥 Призрачная коала GKOALA потеряла лес. Собирай эвкалипты (клик = 1 лист). Накопи → обменяй на $GKOALA → автоматически получишь на TON-кошелёк.", tapLabel:"жми спасти", scoreLabel:"🍃 Эвкалиптов", receiveLabel:"Получить:", exchangeBtn:"🍃➡️🪙 Обменять на GKOALA", footnote:"💎 Кликай → копи листья → обменяй → GKOALA придут автоматически на твой TON-кошелёк.", alertNoLeaves:"🍂 Ты ещё не собрал ни одного эвкалипта!", alertMinLeaves:(n)=>`Нужно минимум ${n} листьев.`, promptAddress:(tokens)=>`🎁 У тебя {leaves} листьев → ${tokens} GKOALA.\nВведи TON-адрес (UQ... или EQ...):` },
-        en: { story:"🔥 Ghost koala GKOALA lost her forest. Collect eucalyptus (click = 1 leaf). Exchange for $GKOALA → automatically sent to your TON wallet.", tapLabel:"click to save", scoreLabel:"🍃 Eucalyptus", receiveLabel:"Receive:", exchangeBtn:"🍃➡️🪙 Exchange for GKOALA", footnote:"💎 Click → collect leaves → exchange → GKOALA sent to your TON wallet automatically.", alertNoLeaves:"🍂 No leaves yet!", alertMinLeaves:(n)=>`Need at least ${n} leaves.`, promptAddress:(tokens)=>`🎁 You have {leaves} leaves → ${tokens} GKOALA.\nEnter TON address (UQ... or EQ...):` },
-        // другие языки опущены для краткости, но в реальном файле они будут
+        ru: {
+            story: "🔥 Призрачная коала GKOALA потеряла лес в огне. Собирай эвкалиптовые листья — каждый клик = 1 лист. Накопи → обменяй на настоящие $GKOALA → автоматически на твой кошелёк.",
+            tapLabel: "жми спасти",
+            scoreLabel: "🍃 Эвкалиптов",
+            receiveLabel: "Получить на кошелёк:",
+            exchangeBtn: "🍃➡️🪙 Обменять на GKOALA",
+            footnote: "💎 Кликай → копи листья → выбери кошелёк → обменяй → GKOALA придут автоматически. Никакой ручной отправки.",
+            alertNoLeaves: "🍂 Ты ещё не собрал ни одного эвкалипта! Нажми на монету.",
+            alertMinLeaves: (need) => `Нужно минимум ${need} листьев для обмена. Продолжай кликать!`,
+            promptAddress: (tokens) => `🎁 Ты накопил {leaves} листьев! Это = ${tokens} GKOALA.\nВведи адрес своего TON-кошелька (начинается с UQ или EQ):\n(Можно из Telegram Wallet, Tonkeeper, любой TON-кошелёк)`,
+            alertSuccess: (tokens, addr) => `✅ Успех! ${tokens} GKOALA отправлены на ${addr.slice(0,6)}...\nСпасибо, что спасаешь коалу!`,
+            alertError: (err) => `❌ Ошибка: ${err}. Попробуй позже.`,
+            serverError: "❌ Сервер временно недоступен. Попробуй через минуту."
+        },
+        en: {
+            story: "🔥 Ghost koala GKOALA lost her forest in fire. Collect eucalyptus leaves — each click = 1 leaf. Accumulate → exchange for real $GKOALA → automatically to your wallet.",
+            tapLabel: "click to save",
+            scoreLabel: "🍃 Eucalyptus",
+            receiveLabel: "Receive to wallet:",
+            exchangeBtn: "🍃➡️🪙 Exchange for GKOALA",
+            footnote: "💎 Click → collect leaves → choose wallet → exchange → GKOALA will arrive automatically. No manual work.",
+            alertNoLeaves: "🍂 You haven't collected any eucalyptus leaves yet! Tap the coin.",
+            alertMinLeaves: (need) => `Minimum ${need} leaves required to exchange. Keep clicking!`,
+            promptAddress: (tokens) => `🎁 You collected {leaves} leaves! That's ${tokens} GKOALA.\nEnter your TON wallet address (starts with UQ or EQ):\n(Telegram Wallet, Tonkeeper, any TON wallet)`,
+            alertSuccess: (tokens, addr) => `✅ Success! ${tokens} GKOALA sent to ${addr.slice(0,6)}...\nThank you for saving the koala!`,
+            alertError: (err) => `❌ Error: ${err}. Try again later.`,
+            serverError: "❌ Server temporarily unavailable. Try again in a minute."
+        },
+        zh: {
+            story: "🔥 幽灵考拉 GKOALA 在火灾中失去了森林。收集桉树叶 — 每次点击 = 1 片叶子。累积 → 兑换成真正的 $GKOALA → 自动发送到你的钱包。",
+            tapLabel: "点击拯救",
+            scoreLabel: "🍃 桉树叶",
+            receiveLabel: "接收钱包:",
+            exchangeBtn: "🍃➡️🪙 兑换 GKOALA",
+            footnote: "💎 点击 → 收集树叶 → 选择钱包 → 兑换 → GKOALA 将自动到账。无需人工操作。",
+            alertNoLeaves: "🍂 你还没有收集任何桉树叶！点击硬币。",
+            alertMinLeaves: (need) => `最少需要 ${need} 片叶子才能兑换。继续点击！`,
+            promptAddress: (tokens) => `🎁 您收集了 {leaves} 片叶子！相当于 ${tokens} GKOALA。\n输入您的 TON 钱包地址 (以 UQ 或 EQ 开头):`,
+            alertSuccess: (tokens, addr) => `✅ 成功！${tokens} GKOALA 已发送至 ${addr.slice(0,6)}...\n感谢拯救考拉！`,
+            alertError: (err) => `❌ 错误: ${err}。请稍后重试。`,
+            serverError: "❌ 服务器暂时不可用，请稍后再试。"
+        },
+        ja: {
+            story: "🔥 ゴーストコアラ GKOALA は火事で森を失いました。ユーカリの葉を集めよう — 1クリック = 1枚。貯める → $GKOALA に交換 → 自動的にあなたのウォレットへ。",
+            tapLabel: "クリックで救助",
+            scoreLabel: "🍃 ユーカリの葉",
+            receiveLabel: "受け取りウォレット:",
+            exchangeBtn: "🍃➡️🪙 GKOALAに交換",
+            footnote: "💎 クリック → 葉を集める → ウォレットを選択 → 交換 → GKOALAが自動で届きます。",
+            alertNoLeaves: "🍂 葉をまだ一枚も集めていません！コインをタップ。",
+            alertMinLeaves: (need) => `交換には最低 ${need} 枚の葉が必要です。クリックを続けよう！`,
+            promptAddress: (tokens) => `🎁 {leaves}枚の葉を集めました！ ${tokens} GKOALA です。\nTONウォレットアドレスを入力 (UQ または EQ で始まるもの):`,
+            alertSuccess: (tokens, addr) => `✅ 成功！${tokens} GKOALA を ${addr.slice(0,6)}... に送信しました。`,
+            alertError: (err) => `❌ エラー: ${err}。後で再試行してください。`,
+            serverError: "❌ サーバーが一時的に利用できません。1分後に再試行してください。"
+        },
+        es: {
+            story: "🔥 El koala fantasma GKOALA perdió su bosque en el fuego. Recolecta hojas de eucalipto — cada clic = 1 hoja. Acumula → cambia por $GKOALA reales → automáticamente a tu wallet.",
+            tapLabel: "clic para salvar",
+            scoreLabel: "🍃 Hojas de eucalipto",
+            receiveLabel: "Recibir en wallet:",
+            exchangeBtn: "🍃➡️🪙 Cambiar por GKOALA",
+            footnote: "💎 Clic → acumula hojas → elige wallet → cambia → GKOALA llegarán automáticamente.",
+            alertNoLeaves: "🍂 ¡Aún no has recolectado ninguna hoja! Toca la moneda.",
+            alertMinLeaves: (need) => `Se necesitan al menos ${need} hojas para cambiar. ¡Sigue cliqueando!`,
+            promptAddress: (tokens) => `🎁 ¡Has recolectado {leaves} hojas! Eso son ${tokens} GKOALA.\nIngresa tu dirección TON (empieza con UQ o EQ):`,
+            alertSuccess: (tokens, addr) => `✅ ¡Éxito! ${tokens} GKOALA enviados a ${addr.slice(0,6)}...`,
+            alertError: (err) => `❌ Error: ${err}. Inténtalo de nuevo más tarde.`,
+            serverError: "❌ Servidor temporalmente no disponible. Intenta en un minuto."
+        }
     };
-    let currentLang = 'ru'; let leafBalance = 0;
-    function loadLeaves(){ let s=localStorage.getItem('gkoala_leaves'); leafBalance=s?parseInt(s):0; document.getElementById('leafCount').innerText=leafBalance; }
-    function saveLeaves(){ localStorage.setItem('gkoala_leaves', leafBalance); document.getElementById('leafCount').innerText=leafBalance; }
-    function updateUI(){ let t=translations[currentLang]; if(t){ document.getElementById('storyText').innerText=t.story; document.getElementById('tapLabel').innerText=t.tapLabel; document.getElementById('scoreLabel').innerHTML=t.scoreLabel; document.getElementById('receiveLabel').innerText=t.receiveLabel; document.getElementById('exchangeBtn').innerHTML=t.exchangeBtn; document.getElementById('footnoteText').innerHTML=t.footnote; } }
-    function setLanguage(lang){ currentLang=lang; updateUI(); document.querySelectorAll('.lang-btn').forEach(btn=>{ if(btn.getAttribute('data-lang')===lang) btn.classList.add('active'); else btn.classList.remove('active'); }); }
-    async function exchangeLeaves(){
-        if(leafBalance<=0){ alert(translations[currentLang].alertNoLeaves); return; }
-        const rate=100; const tokens=Math.floor(leafBalance/rate);
-        if(tokens===0){ alert(translations[currentLang].alertMinLeaves(rate)); return; }
-        let msg=translations[currentLang].promptAddress(tokens).replace('{leaves}',leafBalance);
-        let addr=prompt(msg,"");
-        if(!addr||!addr.trim()) return;
-        addr=addr.trim();
-        if(!addr.startsWith("UQ")&&!addr.startsWith("EQ")){ alert("⚠️ Address must start with UQ or EQ"); return; }
-        const btn=document.getElementById('exchangeBtn'); const original=btn.innerText; btn.innerText="⏳ Sending..."; btn.disabled=true;
-        try{
-            const res=await fetch('https://gkoala-bot.onrender.com/api/redeem',{
-                method:'POST', headers:{'Content-Type':'application/json'},
-                body:JSON.stringify({wallet:addr, leaves:leafBalance})
-            });
-            const data=await res.json();
-            if(data.success){ alert(`✅ Success! ${data.tokens} GKOALA sent to ${addr.slice(0,8)}...`); leafBalance=0; saveLeaves(); updateUI(); }
-            else alert(`❌ Error: ${data.error}`);
-        }catch(e){ alert("❌ Server error. Try later."); }
-        finally{ btn.innerText=original; btn.disabled=false; }
+
+    let currentLang = 'ru';
+    let leafBalance = 0;
+    const STORAGE_KEY = 'gkoala_leaves_final';
+
+    function loadLeaves() {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        leafBalance = saved ? parseInt(saved) : 0;
+        document.getElementById('leafCount').innerText = leafBalance;
     }
-    document.getElementById('tapArea').addEventListener('click',()=>{ leafBalance++; saveLeaves(); });
-    document.getElementById('exchangeBtn').addEventListener('click',exchangeLeaves);
-    document.querySelectorAll('.lang-btn').forEach(btn=>btn.addEventListener('click',()=>setLanguage(btn.getAttribute('data-lang'))));
-    loadLeaves(); setLanguage('ru');
+    function saveLeaves() {
+        localStorage.setItem(STORAGE_KEY, leafBalance);
+        document.getElementById('leafCount').innerText = leafBalance;
+    }
+    function updateUI() {
+        const t = translations[currentLang];
+        if (!t) return;
+        document.getElementById('storyText').innerText = t.story;
+        document.getElementById('tapLabel').innerText = t.tapLabel;
+        document.getElementById('scoreLabel').innerHTML = t.scoreLabel;
+        document.getElementById('receiveLabel').innerText = t.receiveLabel;
+        document.getElementById('exchangeBtn').innerHTML = t.exchangeBtn;
+        document.getElementById('footnoteText').innerHTML = t.footnote;
+    }
+    function showError(msg) {
+        const errDiv = document.getElementById('errorMsg');
+        errDiv.innerText = msg;
+        errDiv.style.display = 'block';
+        setTimeout(() => { errDiv.style.display = 'none'; }, 5000);
+    }
+
+    function handleTap() {
+        leafBalance++;
+        saveLeaves();
+        const tapDiv = document.getElementById('tapArea');
+        tapDiv.style.transform = 'scale(0.97)';
+        setTimeout(() => tapDiv.style.transform = '', 100);
+    }
+
+    async function exchangeLeaves() {
+        const t = translations[currentLang];
+        if (leafBalance <= 0) {
+            showError(t.alertNoLeaves);
+            return;
+        }
+        const rate = 10;   // 10 листьев = 1 GKOALA (можно менять)
+        const tokensToSend = Math.floor(leafBalance / rate);
+        if (tokensToSend === 0) {
+            showError(t.alertMinLeaves(rate));
+            return;
+        }
+
+        let promptMsg = t.promptAddress(tokensToSend);
+        promptMsg = promptMsg.replace('{leaves}', leafBalance);
+        let userAddr = prompt(promptMsg, "");
+        if (!userAddr || userAddr.trim() === "") {
+            showError("❌ Отмена");
+            return;
+        }
+        userAddr = userAddr.trim();
+        if (!userAddr.startsWith("UQ") && !userAddr.startsWith("EQ")) {
+            showError("⚠️ Адрес должен начинаться с UQ или EQ. Пример: UQAbjCwh...");
+            return;
+        }
+
+        const btn = document.getElementById('exchangeBtn');
+        const originalText = btn.innerText;
+        btn.innerText = "⏳ Sending...";
+        btn.disabled = true;
+
+        try {
+            // ВРЕМЕННО: заглушка вместо реального сервера. Потом заменишь на адрес бэкенда.
+            const serverUrl = "https://your-backend.onrender.com/api/redeem";
+            // Пока сервера нет, имитируем успех через 1 секунду
+            // !! ЗАМЕНИ ЭТУ ЗАГЛУШКУ НАСТОЯЩИМ ЗАПРОСОМ, КОГДА ПОДНИМЕШЬ БЭКЕНД !!
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            const mockResult = { success: true, tokens: tokensToSend, txId: "mock_tx_" + Date.now() };
+            // Код для реального запроса (раскомментируй, когда сервер готов):
+            /*
+            const response = await fetch(serverUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ wallet: userAddr, leaves: leafBalance })
+            });
+            const result = await response.json();
+            */
+            if (mockResult.success) {
+                alert(t.alertSuccess(mockResult.tokens, userAddr));
+                leafBalance = 0;
+                saveLeaves();
+                updateUI();
+            } else {
+                showError(t.alertError(mockResult.error || "Unknown error"));
+            }
+        } catch (err) {
+            console.error(err);
+            showError(t.serverError);
+        } finally {
+            btn.innerText = originalText;
+            btn.disabled = false;
+        }
+    }
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        updateUI();
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
+            else btn.classList.remove('active');
+        });
+    }
+
+    // инициализация
+    loadLeaves();
+    updateUI();
+    document.getElementById('tapArea').addEventListener('click', handleTap);
+    document.getElementById('exchangeBtn').addEventListener('click', exchangeLeaves);
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang')));
+    });
+    setLanguage('ru');
 </script>
 </body>
 </html>
