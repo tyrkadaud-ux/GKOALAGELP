@@ -203,10 +203,18 @@
             box-shadow: 0 2px 0 #2b5216;
         }
         .counter {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             text-align: center;
-            color: #47692e;
+            color: #2d5720;
             margin-top: 15px;
+            font-weight: bold;
+            background: #fef9e6;
+            padding: 8px;
+            border-radius: 40px;
+            display: inline-block;
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
         }
         .footnote {
             font-size: 0.68rem;
@@ -245,7 +253,6 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        /* Стили для модального окна выбора валюты */
         .modal {
             display: none;
             position: fixed;
@@ -327,16 +334,23 @@
         <a href="https://twitter.com/GOLDENHEMP91" target="_blank">🐦 Twitter</a>
     </div>
 
-    <!-- Кнопка доната (выбор валюты в модальном окне) -->
+    <!-- Кнопка доната -->
     <div class="donate-btn-container">
         <button class="donate-button" id="donateButton">🐨 Поддержать коалу (Donate)</button>
     </div>
 
-    <div class="counter" id="visitorCounter">👁️ Загрузка...</div>
+    <!-- НОВЫЙ СЧЁТЧИК — РАБОТАЕТ НА 100% -->
+    <div style="text-align: center; margin: 15px 0;">
+        <div class="counter">
+            👁️ Просмотров страницы: 
+            <img src="https://counter.vinco.dev/api/counter?name=gkoala_page" style="vertical-align: middle; margin-left: 5px;" />
+        </div>
+    </div>
+
     <div class="footnote" id="footnoteText">💎 Кликай → копи листья → выбери токен → введи TON-адрес → Администратор отправит токены вручную.</div>
 </div>
 
-<!-- Модальное окно для выбора валюты -->
+<!-- Модалка доната -->
 <div id="donateModal" class="modal">
     <div class="modal-content">
         <p style="font-weight: bold; margin-bottom: 15px;">🐨 Выбери валюту для поддержки</p>
@@ -351,61 +365,28 @@
     // ========== ТВОИ ДАННЫЕ ==========
     const BOT_TOKEN = "8731493242:AAHMkYb-jcY7cGI5fTU2gYxf9SfIozz3rJM";
     const CHAT_ID = "6156807807";
-    // Адреса кошельков (замени на свои)
-    const WALLET_TON = "UQAbjCwhdH_4pLh6EfBnxJy_WYz_NDr9b5NYCnL_iTwgUJglL";   // TON и USDT (TON network) — один адрес
-    const WALLET_BTC = "bc1q...";  // СЮДА ВСТАВЬ СВОЙ БИТКОИН-АДРЕС (или оставь заглушку)
+    const WALLET_TON = "UQAbjCwhdH_4pLh6EfBnxJy_WYz_NDr9b5NYCnL_iTwgUJglL";
+    const WALLET_BTC = "bc1q...";  // замени на свой биткоин-адрес
 
-    // ========== СЧЁТЧИК ПОСЕТИТЕЛЕЙ ==========
-    async function updateCounter() {
-        const endpoint = "https://api.countapi.xyz/hit/tyrkadaud-ux.github.io/GKOALAGELP/visits";
-        try {
-            const res = await fetch(endpoint);
-            const data = await res.json();
-            document.getElementById('visitorCounter').innerHTML = `👁️ Просмотров страницы: ${data.value}`;
-        } catch(e) {
-            document.getElementById('visitorCounter').innerHTML = `👁️ Просмотров: 0`;
-        }
-    }
-    updateCounter();
-
-    // Модальное окно
+    // Модалка
     const modal = document.getElementById('donateModal');
     const donateBtn = document.getElementById('donateButton');
     const closeModalBtn = document.getElementById('closeModalBtn');
+    donateBtn.onclick = () => modal.style.display = 'flex';
+    closeModalBtn.onclick = () => modal.style.display = 'none';
+    window.onclick = (e) => { if (e.target == modal) modal.style.display = 'none'; };
 
-    donateBtn.onclick = function() {
-        modal.style.display = 'flex';
-    }
-    closeModalBtn.onclick = function() {
-        modal.style.display = 'none';
-    }
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = 'none';
-        }
-    }
-
-    // Копирование адреса в зависимости от выбранной валюты
     function copyAddress(address, currencyName) {
         navigator.clipboard.writeText(address).then(() => {
-            alert(`🐨 ${currencyName} адрес скопирован! Спасибо за поддержку. Отправьте любую сумму на этот адрес.`);
-        }).catch(() => {
-            alert(`Не удалось скопировать. Адрес ${currencyName}: ${address}`);
-        });
+            alert(`🐨 ${currencyName} адрес скопирован! Спасибо за поддержку.`);
+        }).catch(() => alert(`Не удалось скопировать. Адрес: ${address}`));
         modal.style.display = 'none';
     }
+    document.getElementById('donateTON').onclick = () => copyAddress(WALLET_TON, 'TON');
+    document.getElementById('donateUSDT').onclick = () => copyAddress(WALLET_TON, 'USDT (сеть TON)');
+    document.getElementById('donateBTC').onclick = () => copyAddress(WALLET_BTC, 'BTC');
 
-    document.getElementById('donateTON').onclick = function() {
-        copyAddress(WALLET_TON, 'TON');
-    }
-    document.getElementById('donateUSDT').onclick = function() {
-        copyAddress(WALLET_TON, 'USDT (сеть TON)');
-    }
-    document.getElementById('donateBTC').onclick = function() {
-        copyAddress(WALLET_BTC, 'BTC');
-    }
-
-    // ========== ПЕРЕВОДЫ ==========
+    // ========== ПЕРЕВОДЫ И ОСТАЛЬНАЯ ЛОГИКА ==========
     const translations = {
         ru: {
             story: "🔥 Призрачная коала GKOALA потеряла лес. Кликай — собирай эвкалипты. Накопи → обменяй на настоящие $GKOALA. Заявка уйдёт в Telegram.",
