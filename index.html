@@ -26,8 +26,27 @@
         .select-row{background:#f4f9ec;border-radius:48px;padding:10px 15px;margin:10px 0;display:flex;justify-content:space-between;align-items:center;}
         .select-row label{font-weight:600;color:#2d5720;}
         .token-choice{background:white;border:1px solid #bdd99b;border-radius:40px;padding:8px 14px;font-weight:500;cursor:pointer;}
-        .links{display:flex;justify-content:center;gap:15px;margin:20px 0 10px;}
+        .links{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;margin:20px 0 10px;}
         .links a{background:#ebf5e0;padding:6px 16px;border-radius:40px;text-decoration:none;font-weight:600;color:#2d5720;font-size:0.8rem;}
+        /* Стиль для новой большой кнопки */
+        .buy-now-btn {
+            display: block;
+            background: #699e3d;
+            text-align: center;
+            padding: 14px;
+            border-radius: 60px;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            margin: 15px 0;
+            box-shadow: 0 6px 0 #2b5216;
+            transition: 0.05s linear;
+            font-size: 1.2rem;
+        }
+        .buy-now-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 3px 0 #2b5216;
+        }
         .footnote{font-size:0.68rem;color:#47692e;text-align:center;border-top:1px dashed #aac88d;padding-top:14px;margin-top:10px;}
         @media (max-width:480px){.koala-coin{width:220px;height:220px;}.koala-face{font-size:4rem;}.score-value{font-size:1.8rem;}}
         .loader{border:3px solid #fff;border-radius:50%;border-top:3px solid #699e3d;width:20px;height:20px;animation:spin 1s linear infinite;display:inline-block;margin-left:10px;}
@@ -65,8 +84,13 @@
         </select>
     </div>
     <button class="exchange-btn" id="exchangeBtn">🍃➡️🪙 Обменять на GKOALA</button>
+    
+    <!-- === НОВАЯ БОЛЬШАЯ КНОПКА ДЛЯ ПОКУПКИ === -->
+    <a href="https://dedust.io/swap/EQD8LA28Gelt6BB4DgD5XWmq8dhGtKBbt4wPfaDE2S1BySV" target="_blank" class="buy-now-btn">🚀 Быстрая покупка GKOALA на DeDust (токен уже на месте)</a>
+    <!-- ========================================= -->
+    
     <div class="links">
-        <a href="https://dedust.io/swap/EQD8LA28Gelt6BB4DgD5XWmq8dhGtKBbt4wPfaDE2S1BySV" target="_blank">🛒 Купить GKOALA</a>
+        <a href="https://dedust.io/swap/EQD8LA28Gelt6BB4DgD5XWmq8dhGtKBbt4wPfaDE2S1BySV" target="_blank">🛒 Купить GKOALA на DeDust</a>
         <a href="https://t.me/GKOALA_portal" target="_blank">📢 Telegram</a>
         <a href="https://twitter.com/GOLDENHEMP91" target="_blank">🐦 Twitter</a>
     </div>
@@ -74,10 +98,10 @@
 </div>
 
 <script>
-    // ========== ТВОЙ БОТ (ТОКЕН И CHAT_ID УЖЕ ВСТАВЛЕНЫ) ==========
+    // ========== ТВОЙ БОТ (ТОКЕН И CHAT_ID) ==========
     const BOT_TOKEN = "8731493242:AAHMkYb-jcY7cGI5fTU2gYxf9SfIozz3rJM";
-    const CHAT_ID = "6156807807";   // ТВОЙ CHAT_ID от @userinfobot
-    // ============================================================
+    const CHAT_ID = "6156807807";
+    // =================================================
 
     const translations = {
         ru: {
