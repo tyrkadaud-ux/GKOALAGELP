@@ -5,192 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>GKOALA — Эвкалиптовый пресс</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-        body {
-            background: linear-gradient(145deg, #e9f7e1 0%, #c8e6b5 100%);
-            min-height: 100vh;
-            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, 'Helvetica Neue', sans-serif;
-            padding: 20px;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(4px);
-            border-radius: 56px;
-            box-shadow: 0 20px 40px rgba(60, 80, 20, 0.2);
-            padding: 20px 20px 35px;
-            border: 1px solid #cce3b3;
-        }
-        .lang-bar {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .lang-btn {
-            background: #e3f0d3;
-            border: none;
-            padding: 6px 14px;
-            border-radius: 40px;
-            font-weight: 600;
-            color: #2a5916;
-            cursor: pointer;
-            transition: 0.1s;
-            font-size: 0.85rem;
-        }
-        .lang-btn.active {
-            background: #5f8b3e;
-            color: white;
-            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-        }
-        .story-card {
-            background: #fef9e6;
-            border-radius: 44px;
-            padding: 18px;
-            margin-bottom: 24px;
-            border: 1px solid #c0d6a3;
-            text-align: center;
-        }
-        .story-text {
-            font-size: 0.95rem;
-            line-height: 1.4;
-            color: #2c3a1f;
-            font-weight: 500;
-        }
-        .press-area {
-            display: flex;
-            justify-content: center;
-            margin: 15px 0;
-            cursor: pointer;
-        }
-        .koala-coin {
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle at 30% 30%, #f9f2cf, #e2d5a3);
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 15px 25px rgba(0,0,0,0.2), inset 0 -3px 0 rgba(0,0,0,0.1);
-            transition: all 0.05s linear;
-            border: 3px solid #fff9e0;
-        }
-        .koala-coin:active {
-            transform: scale(0.96);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }
-        .koala-face {
-            font-size: 4rem;
-        }
-        .koala-label {
-            background: #3b5322bb;
-            backdrop-filter: blur(4px);
-            padding: 4px 12px;
-            border-radius: 40px;
-            color: white;
-            font-size: 0.7rem;
-            margin-top: 8px;
-        }
-        .score-board {
-            background: #2d3e1fcc;
-            border-radius: 60px;
-            padding: 10px 18px;
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin: 18px 0;
-        }
-        .score-label {
-            background: #1f2e12;
-            padding: 4px 16px;
-            border-radius: 40px;
-            color: #f9f2cf;
-            font-weight: 600;
-        }
-        .score-value {
-            font-size: 2.3rem;
-            font-weight: 800;
-            color: #ffefb9;
-            line-height: 1;
-        }
-        .exchange-btn {
-            background: linear-gradient(135deg, #699e3d, #3b6e1c);
-            width: 100%;
-            padding: 16px;
-            border: none;
-            border-radius: 60px;
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #ffffdd;
-            margin: 10px 0 15px;
-            cursor: pointer;
-            box-shadow: 0 8px 0 #2b5216;
-            transition: 0.05s linear;
-        }
-        .exchange-btn:active {
-            transform: translateY(3px);
-            box-shadow: 0 4px 0 #2b5216;
-        }
-        .select-row {
-            background: #f4f9ec;
-            border-radius: 48px;
-            padding: 10px 15px;
-            margin: 10px 0;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-        }
-        .select-row label {
-            font-weight: 600;
-            color: #2d5720;
-        }
-        .token-choice {
-            background: white;
-            border: 1px solid #bdd99b;
-            border-radius: 40px;
-            padding: 8px 14px;
-            font-weight: 500;
-            cursor: pointer;
-        }
-        .links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin: 20px 0 10px;
-        }
-        .links a {
-            background: #ebf5e0;
-            padding: 6px 16px;
-            border-radius: 40px;
-            text-decoration: none;
-            font-weight: 600;
-            color: #2d5720;
-            font-size: 0.8rem;
-        }
-        .footnote {
-            font-size: 0.68rem;
-            color: #47692e;
-            text-align: center;
-            border-top: 1px dashed #aac88d;
-            padding-top: 14px;
-            margin-top: 10px;
-        }
-        @media (max-width: 480px) {
-            .koala-coin { width: 150px; height: 150px; }
-            .koala-face { font-size: 3rem; }
-            .score-value { font-size: 1.8rem; }
-        }
+        *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+        body{background:linear-gradient(145deg,#e9f7e1,#c8e6b5);min-height:100vh;font-family:'Segoe UI',Roboto,system-ui;padding:20px;display:flex;justify-content:center;align-items:center;}
+        .container{max-width:600px;width:100%;background:rgba(255,255,255,0.95);backdrop-filter:blur(4px);border-radius:56px;box-shadow:0 20px 40px rgba(60,80,20,0.2);padding:20px 20px 35px;border:1px solid #cce3b3;}
+        .lang-bar{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:20px;}
+        .lang-btn{background:#e3f0d3;border:none;padding:6px 14px;border-radius:40px;font-weight:600;color:#2a5916;cursor:pointer;font-size:0.85rem;}
+        .lang-btn.active{background:#5f8b3e;color:white;}
+        .story-card{background:#fef9e6;border-radius:44px;padding:18px;margin-bottom:24px;border:1px solid #c0d6a3;text-align:center;}
+        .story-text{font-size:0.95rem;line-height:1.4;color:#2c3a1f;font-weight:500;}
+        .press-area{display:flex;justify-content:center;margin:15px 0;cursor:pointer;}
+        .koala-coin{width:280px;height:280px;background:radial-gradient(circle at 30% 30%,#f9f2cf,#e2d5a3);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 15px 25px rgba(0,0,0,0.2),inset 0 -3px 0 rgba(0,0,0,0.1);transition:all 0.05s linear;border:3px solid #fff9e0;}
+        .koala-coin:active{transform:scale(0.96);}
+        .koala-face{font-size:6rem;}
+        .koala-label{background:#3b5322bb;backdrop-filter:blur(4px);padding:4px 12px;border-radius:40px;color:white;font-size:0.9rem;margin-top:8px;}
+        .score-board{background:#2d3e1fcc;border-radius:60px;padding:10px 18px;display:flex;justify-content:space-between;align-items:baseline;margin:18px 0;}
+        .score-label{background:#1f2e12;padding:4px 16px;border-radius:40px;color:#f9f2cf;font-weight:600;}
+        .score-value{font-size:2.5rem;font-weight:800;color:#ffefb9;}
+        .exchange-btn{background:linear-gradient(135deg,#699e3d,#3b6e1c);width:100%;padding:16px;border:none;border-radius:60px;font-size:1.3rem;font-weight:bold;color:#ffffdd;margin:10px 0 15px;cursor:pointer;box-shadow:0 8px 0 #2b5216;transition:0.05s linear;}
+        .exchange-btn:active{transform:translateY(3px);box-shadow:0 4px 0 #2b5216;}
+        .select-row{background:#f4f9ec;border-radius:48px;padding:10px 15px;margin:10px 0;display:flex;justify-content:space-between;align-items:center;}
+        .select-row label{font-weight:600;color:#2d5720;}
+        .token-choice{background:white;border:1px solid #bdd99b;border-radius:40px;padding:8px 14px;font-weight:500;cursor:pointer;}
+        .links{display:flex;justify-content:center;gap:15px;margin:20px 0 10px;}
+        .links a{background:#ebf5e0;padding:6px 16px;border-radius:40px;text-decoration:none;font-weight:600;color:#2d5720;font-size:0.8rem;}
+        .footnote{font-size:0.68rem;color:#47692e;text-align:center;border-top:1px dashed #aac88d;padding-top:14px;margin-top:10px;}
+        @media (max-width:480px){.koala-coin{width:220px;height:220px;}.koala-face{font-size:4rem;}.score-value{font-size:1.8rem;}}
+        .loader{border:3px solid #fff;border-radius:50%;border-top:3px solid #699e3d;width:20px;height:20px;animation:spin 1s linear infinite;display:inline-block;margin-left:10px;}
+        @keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
     </style>
 </head>
 <body>
@@ -203,7 +44,7 @@
         <button class="lang-btn" data-lang="es">🇪🇸 Español</button>
     </div>
     <div class="story-card">
-        <div class="story-text" id="storyText">🔥 Призрачная коала GKOALA потеряла лес в огне. Собирай эвкалиптовые листья — каждый клик = 1 лист. Накопи → обменяй на настоящие $GKOALA → заявка уйдёт в Telegram, и администратор отправит тебе токены.</div>
+        <div class="story-text" id="storyText">🔥 Призрачная коала GKOALA потеряла лес. Кликай — собирай эвкалипты. Накопи → обменяй на настоящие $GKOALA. Заявка уйдёт в Telegram.</div>
     </div>
     <div class="press-area" id="tapArea">
         <div class="koala-coin">
@@ -218,79 +59,75 @@
     <div class="select-row">
         <label id="receiveLabel">Получить:</label>
         <select id="tokenSelect" class="token-choice">
-            <option value="TON">💰 TON (кошелёк)</option>
-            <option value="USDT">💵 USDT (через DeDust)</option>
-            <option value="GHEMP">🌿 GHEMP (токен конопли)</option>
+            <option value="TON">💰 TON кошелёк</option>
+            <option value="USDT">💵 USDT (DeDust)</option>
+            <option value="GHEMP">🌿 GHEMP</option>
         </select>
     </div>
     <button class="exchange-btn" id="exchangeBtn">🍃➡️🪙 Обменять на GKOALA</button>
     <div class="links">
-        <a href="https://dedust.io/swap/EQD8LA28Gelt6BB4DgD5XWmq8dhGtKBbt4wPfaDE2S1BySV" target="_blank">🛒 Купить GKOALA на DeDust</a>
+        <a href="https://dedust.io/swap/EQD8LA28Gelt6BB4DgD5XWmq8dhGtKBbt4wPfaDE2S1BySV" target="_blank">🛒 Купить GKOALA</a>
         <a href="https://t.me/GKOALA_portal" target="_blank">📢 Telegram</a>
         <a href="https://twitter.com/GOLDENHEMP91" target="_blank">🐦 Twitter</a>
     </div>
-    <div class="footnote" id="footnoteText">💎 1. Кликай → копи листья → выбери токен → обменяй. 2. Введи TON-адрес. 3. Администратор получит заявку и отправит GKOALA вручную (позже будет автоматически).</div>
+    <div class="footnote" id="footnoteText">💎 Кликай → копи листья → выбери токен → введи TON-адрес → Администратор отправит токены вручную.</div>
 </div>
 
 <script>
-    // ========== ТВОЙ БОТ (токен уже вставлен) ==========
+    // ========== ТВОЙ БОТ (ТОКЕН И CHAT_ID УЖЕ ВСТАВЛЕНЫ) ==========
     const BOT_TOKEN = "8731493242:AAHMkYb-jcY7cGI5fTU2gYxf9SfIozz3rJM";
-    const CHAT_ID = "ВАШ_CHAT_ID";   // ⚠️ ВСТАВЬ СЮДА СВОЙ CHAT_ID (число)
-    // ===================================================
+    const CHAT_ID = "6156807807";   // ТВОЙ CHAT_ID от @userinfobot
+    // ============================================================
 
     const translations = {
         ru: {
-            story: "🔥 Призрачная коала GKOALA потеряла лес в огне. Собирай эвкалиптовые листья — каждый клик = 1 лист. Накопи → обменяй на настоящие $GKOALA → заявка уйдёт в Telegram, и администратор отправит тебе токены.",
+            story: "🔥 Призрачная коала GKOALA потеряла лес. Кликай — собирай эвкалипты. Накопи → обменяй на настоящие $GKOALA. Заявка уйдёт в Telegram.",
             tapLabel: "жми спасти",
             scoreLabel: "🍃 Эвкалиптов",
             receiveLabel: "Получить:",
             exchangeBtn: "🍃➡️🪙 Обменять на GKOALA",
-            footnote: "💎 1. Кликай → копи листья → выбери токен → обменяй. 2. Введи TON-адрес. 3. Администратор получит заявку и отправит GKOALA.",
-            alertNoLeaves: "🍂 Ты ещё не собрал ни одного эвкалипта!",
-            alertMinLeaves: (need) => `Нужно минимум ${need} листьев.`,
-            promptAddress: (tokens) => `🎁 Ты накопил {leaves} листьев → ${tokens} GKOALA.\nВведи свой TON-адрес (начинается с UQ или EQ):`,
+            footnote: "💎 Кликай → копи листья → выбери токен → введи TON-адрес → Администратор отправит токены вручную.",
+            alertNoLeaves: "🍂 Нет листьев! Покликай по монете.",
+            alertMinLeaves: (n) => `Нужно минимум ${n} листьев.`,
+            promptAddress: (tokens) => `🎁 Ты накопил {leaves} листьев → ${tokens} GKOALA.\nВведи TON-адрес (UQ или EQ):`,
             alertSuccess: "✅ Заявка отправлена! Администратор отправит токены в ближайшее время.",
-            alertError: "❌ Ошибка при отправке. Попробуй позже.",
+            alertError: "❌ Ошибка. Попробуй позже.",
             sending: "⏳ Отправка заявки..."
         },
         en: {
-            story: "🔥 Ghost koala GKOALA lost her forest. Collect leaves → exchange for $GKOALA → request goes to Telegram, admin sends tokens.",
+            story: "🔥 Ghost koala GKOALA lost her forest. Click → collect leaves. Exchange for real $GKOALA. Request goes to Telegram.",
             tapLabel: "click to save",
             scoreLabel: "🍃 Eucalyptus",
             receiveLabel: "Receive:",
             exchangeBtn: "🍃➡️🪙 Exchange for GKOALA",
-            footnote: "💎 1. Click → collect leaves → choose token → exchange. 2. Enter TON address. 3. Admin receives request and sends GKOALA.",
-            alertNoLeaves: "🍂 No leaves yet!",
-            alertMinLeaves: (need) => `Need at least ${need} leaves.`,
-            promptAddress: (tokens) => `🎁 You collected {leaves} leaves → ${tokens} GKOALA.\nEnter your TON address (starts with UQ or EQ):`,
+            footnote: "💎 Click → collect leaves → choose token → enter TON address → Admin will send tokens.",
+            alertNoLeaves: "🍂 No leaves yet! Tap the coin.",
+            alertMinLeaves: (n) => `Need at least ${n} leaves.`,
+            promptAddress: (tokens) => `🎁 You have {leaves} leaves → ${tokens} GKOALA.\nEnter TON address (UQ or EQ):`,
             alertSuccess: "✅ Request sent! Admin will send tokens soon.",
-            alertError: "❌ Error sending request. Try again.",
+            alertError: "❌ Error. Try again.",
             sending: "⏳ Sending request..."
         }
     };
-    // Для простоты другие языки копируем английский (пользователь поймёт)
     translations.zh = translations.en;
     translations.ja = translations.en;
     translations.es = translations.en;
 
     let currentLang = 'ru';
     let leafBalance = 0;
-    const STORAGE_KEY = 'gkoala_leaves_tg';
+    const STORAGE_KEY = 'gkoala_leaves';
 
-    function loadLeaves() {
-        const saved = localStorage.getItem(STORAGE_KEY);
+    function load() {
+        let saved = localStorage.getItem(STORAGE_KEY);
         leafBalance = saved ? parseInt(saved) : 0;
         document.getElementById('leafCount').innerText = leafBalance;
     }
-    function saveLeaves() {
+    function save() {
         localStorage.setItem(STORAGE_KEY, leafBalance);
         document.getElementById('leafCount').innerText = leafBalance;
     }
-    function updateUI() {
-        document.getElementById('leafCount').innerText = leafBalance;
-    }
-    function updateTexts() {
-        const t = translations[currentLang];
+    function updateUITexts() {
+        let t = translations[currentLang];
         document.getElementById('storyText').innerText = t.story;
         document.getElementById('tapLabel').innerText = t.tapLabel;
         document.getElementById('scoreLabel').innerHTML = t.scoreLabel;
@@ -300,77 +137,71 @@
     }
     function handleTap() {
         leafBalance++;
-        saveLeaves();
-        const tapDiv = document.getElementById('tapArea');
+        save();
+        let tapDiv = document.getElementById('tapArea');
         tapDiv.style.transform = 'scale(0.97)';
         setTimeout(() => tapDiv.style.transform = '', 100);
     }
-    async function exchangeLeaves() {
-        const t = translations[currentLang];
+    async function exchange() {
+        let t = translations[currentLang];
         if (leafBalance <= 0) {
             alert(t.alertNoLeaves);
             return;
         }
-        const rate = 10; // 10 листьев = 1 GKOALA (настрой как хочешь)
-        const tokensToSend = Math.floor(leafBalance / rate);
-        if (tokensToSend === 0) {
+        let rate = 10;
+        let tokens = Math.floor(leafBalance / rate);
+        if (tokens === 0) {
             alert(t.alertMinLeaves(rate));
             return;
         }
-        let promptMsg = t.promptAddress(tokensToSend);
-        promptMsg = promptMsg.replace('{leaves}', leafBalance);
-        let userAddress = prompt(promptMsg, "");
-        if (!userAddress || userAddress.trim() === "") {
-            alert("❌ Cancel");
-            return;
-        }
-        userAddress = userAddress.trim();
-        if (!userAddress.startsWith("UQ") && !userAddress.startsWith("EQ")) {
+        let msg = t.promptAddress(tokens).replace('{leaves}', leafBalance);
+        let addr = prompt(msg, "");
+        if (!addr || !addr.trim()) return;
+        addr = addr.trim();
+        if (!addr.startsWith("UQ") && !addr.startsWith("EQ")) {
             alert("⚠️ Адрес должен начинаться с UQ или EQ");
             return;
         }
-        const btn = document.getElementById('exchangeBtn');
-        const originalText = btn.innerText;
-        btn.innerText = t.sending;
+        let btn = document.getElementById('exchangeBtn');
+        let original = btn.innerHTML;
+        btn.innerHTML = t.sending + ' <div class="loader"></div>';
         btn.disabled = true;
         try {
-            const tokenChoice = document.getElementById('tokenSelect').value;
-            const message = `🐨 НОВАЯ ЗАЯВКА GKOALA!\n🍃 Листьев: ${leafBalance}\n🪙 Токенов: ${tokensToSend}\n👛 Кошелёк: ${userAddress}\n📦 Выбрано: ${tokenChoice}`;
-            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`;
-            const response = await fetch(url);
-            const data = await response.json();
+            let tokenChoice = document.getElementById('tokenSelect').value;
+            let text = `🐨 НОВАЯ ЗАЯВКА GKOALA!\n🍃 Листьев: ${leafBalance}\n🪙 Токенов: ${tokens}\n👛 Кошелёк: ${addr}\n📦 Тип: ${tokenChoice}`;
+            let url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(text)}`;
+            let resp = await fetch(url);
+            let data = await resp.json();
             if (data.ok) {
                 alert(t.alertSuccess);
                 leafBalance = 0;
-                saveLeaves();
-                updateUI();
+                save();
             } else {
                 alert(t.alertError + " " + (data.description || ""));
             }
-        } catch (err) {
-            console.error(err);
+        } catch(e) {
             alert(t.alertError);
         } finally {
-            btn.innerText = originalText;
+            btn.innerHTML = original;
             btn.disabled = false;
         }
     }
-    function setLanguage(lang) {
+    function setLang(lang) {
         currentLang = lang;
-        updateTexts();
+        updateUITexts();
         document.querySelectorAll('.lang-btn').forEach(btn => {
             if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
             else btn.classList.remove('active');
         });
     }
-    loadLeaves();
-    updateTexts();
+    load();
+    updateUITexts();
     document.getElementById('tapArea').addEventListener('click', handleTap);
-    document.getElementById('exchangeBtn').addEventListener('click', exchangeLeaves);
+    document.getElementById('exchangeBtn').addEventListener('click', exchange);
     document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang')));
+        btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
     });
-    setLanguage('ru');
+    setLang('ru');
 </script>
 </body>
 </html>
