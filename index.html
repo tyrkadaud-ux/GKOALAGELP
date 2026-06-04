@@ -363,7 +363,7 @@
             const data = await res.json();
             document.getElementById('visitorCounter').innerHTML = `👁️ Просмотров страницы: ${data.value}`;
         } catch(e) {
-            document.getElementById('visitorCounter').innerHTML = `👁️ Просмотров: ~3.2k (примерно)`;
+            document.getElementById('visitorCounter').innerHTML = `👁️ Просмотров: 0`;
         }
     }
     updateCounter();
