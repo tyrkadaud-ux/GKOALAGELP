@@ -334,23 +334,21 @@
         <a href="https://twitter.com/GOLDENHEMP91" target="_blank">🐦 Twitter</a>
     </div>
 
-    <!-- Кнопка доната -->
     <div class="donate-btn-container">
         <button class="donate-button" id="donateButton">🐨 Поддержать коалу (Donate)</button>
     </div>
 
-    <!-- НОВЫЙ СЧЁТЧИК — РАБОТАЕТ НА 100% -->
-    <div style="text-align: center; margin: 15px 0;">
+    <!-- РАБОЧИЙ СЧЁТЧИК ПРОСМОТРОВ (КАРТИНКА) -->
+    <div style="text-align: center; margin: 20px 0 0;">
         <div class="counter">
             👁️ Просмотров страницы: 
-            <img src="https://counter.vinco.dev/api/counter?name=gkoala_page" style="vertical-align: middle; margin-left: 5px;" />
+            <img src="https://counter.vinco.dev/api/counter?name=gkoala_total" style="vertical-align: middle;" />
         </div>
     </div>
 
     <div class="footnote" id="footnoteText">💎 Кликай → копи листья → выбери токен → введи TON-адрес → Администратор отправит токены вручную.</div>
 </div>
 
-<!-- Модалка доната -->
 <div id="donateModal" class="modal">
     <div class="modal-content">
         <p style="font-weight: bold; margin-bottom: 15px;">🐨 Выбери валюту для поддержки</p>
@@ -362,13 +360,11 @@
 </div>
 
 <script>
-    // ========== ТВОИ ДАННЫЕ ==========
     const BOT_TOKEN = "8731493242:AAHMkYb-jcY7cGI5fTU2gYxf9SfIozz3rJM";
     const CHAT_ID = "6156807807";
     const WALLET_TON = "UQAbjCwhdH_4pLh6EfBnxJy_WYz_NDr9b5NYCnL_iTwgUJglL";
-    const WALLET_BTC = "bc1q...";  // замени на свой биткоин-адрес
+    const WALLET_BTC = "bc1q..."; 
 
-    // Модалка
     const modal = document.getElementById('donateModal');
     const donateBtn = document.getElementById('donateButton');
     const closeModalBtn = document.getElementById('closeModalBtn');
@@ -386,7 +382,6 @@
     document.getElementById('donateUSDT').onclick = () => copyAddress(WALLET_TON, 'USDT (сеть TON)');
     document.getElementById('donateBTC').onclick = () => copyAddress(WALLET_BTC, 'BTC');
 
-    // ========== ПЕРЕВОДЫ И ОСТАЛЬНАЯ ЛОГИКА ==========
     const translations = {
         ru: {
             story: "🔥 Призрачная коала GKOALA потеряла лес. Кликай — собирай эвкалипты. Накопи → обменяй на настоящие $GKOALA. Заявка уйдёт в Telegram.",
